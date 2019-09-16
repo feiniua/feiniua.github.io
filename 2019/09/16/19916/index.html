@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="小老虎窝">
 <meta property="og:description" content="变量Java变量分为两种：成员变量和局部变量。    成员变量分为：实例变量和类变量，有初始值，类变量相当于c++的静态成员。 数组创建数组创建的两种方式：    123int[] a = new int[3];//动态声明Person[] per = new Person[5];//动态声明String[] str = new [3]&amp;#123;&quot;Hello&quot;,&quot;World&quot;,&quot;!&quot;&amp;#125;">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-16T15:29:37.570Z">
+<meta property="og:updated_time" content="2019-09-16T15:49:08.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java学习(1)">
 <meta name="twitter:description" content="变量Java变量分为两种：成员变量和局部变量。    成员变量分为：实例变量和类变量，有初始值，类变量相当于c++的静态成员。 数组创建数组创建的两种方式：    123int[] a = new int[3];//动态声明Person[] per = new Person[5];//动态声明String[] str = new [3]&amp;#123;&quot;Hello&quot;,&quot;World&quot;,&quot;!&quot;&amp;#125;">
@@ -370,8 +370,10 @@
 <h2 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">new</span> Person().print();<span class="comment">//匿名对象</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><pre><code>函数重载跟c++一样，只与参数的个数和数据类型有关。</code></pre><h2 id="传递可变参数"><a href="#传递可变参数" class="headerlink" title="传递可变参数"></a>传递可变参数</h2><pre><code>传递可变参数时一般用数组，但Java提供了&quot;...&quot;用法。
-使用该种方法时...只能用在最后面
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(int i, int... a);//正确</span><br><span class="line">print(int... a, int i);//错误</span><br><span class="line">print(int... a, int... b);//错误</span><br></pre></td></tr></table></figure></code></pre><p>例如</p>
+使用该种方法时...只能用在最后面</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="keyword">int</span> i, <span class="keyword">int</span>... a);<span class="comment">//正确</span></span><br><span class="line">print(<span class="keyword">int</span>... a, <span class="keyword">int</span> i);<span class="comment">//错误</span></span><br><span class="line">print(<span class="keyword">int</span>... a, <span class="keyword">int</span>... b);<span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
+
+
+<p>例如</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">new</span> Person().print(<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>... a)</span></span>&#123; <span class="comment">//...方式传参</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++)&#123;</span><br><span class="line">			System.out.println(a[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="基本数据类型与引用数据类型"><a href="#基本数据类型与引用数据类型" class="headerlink" title="基本数据类型与引用数据类型"></a>基本数据类型与引用数据类型</h2><pre><code>8中基本数据类型：
@@ -381,7 +383,32 @@ type,short,char这三者计算时先转换成int类型计算
 基本数据类型跟引用数据的值存放在栈区。
 引用数据的值所指的值在堆区。
 
-所以用函数交换基本数据类型的值改变不了值。</code></pre>
+所以用函数交换基本数据类型的值改变不了值。</code></pre><div id="flowchart-0" class="flow-chart"></div>
+
+<div id="flowchart-1" class="flow-chart"></div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">#由于渲染问题，请自行将 · 替换为 `
+st=>start: 开始
+e=>end: 结束
+op=>operation: 我的操作
+cond=>condition: 确认？
+
+st->op->cond
+cond(yes)->e
+cond(no)->op</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><textarea id="flowchart-1-code" style="display: none">#由于渲染问题，请自行将 · 替换为 `
+st=>start: Start:>http://www.google.com[blank]
+e=>end:>http://www.google.com
+op1=>operation: My Operation
+sub1=>subroutine: My Subroutine
+cond=>condition: Yes
+or No?:>http://www.google.com
+io=>inputoutput: catch something...
+
+st->op1->cond
+cond(yes)->io->e
+cond(no)->sub1(right)->op1</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script>
       
     </div>
     
