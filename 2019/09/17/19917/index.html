@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="变量Java变量分为两种：成员变量和局部变量。    成员变量分为：实例变量和类变量，有初始值，类变量相当于c++的静态成员。 数组创建数组创建的两种方式：    123int[] a = new int[3];//动态声明Person[] per = new Person[5];//动态声明String[] str = new [3]&amp;#123;&quot;Hello&quot;,&quot;World&quot;,&quot;!&quot;&amp;#125;">
+<meta name="description" content="mian方法的语法public，jvm需要调用类的main()方法 static，jvm执行main()方法时不必创建对象 String，mian方法接受一个String类型的数组参数，该数组中保存执行java命令时传递给所运行的类的参数一个Java文件中只能有一个public类   1.可以有多个类但只能有一个public类，这表示，每个编译单元都有单一的公共接口，用public类来表现。该接口">
 <meta name="keywords" content="2019,java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java学习(1)">
-<meta property="og:url" content="https://feiniua.github.io/2019/09/16/19916/index.html">
+<meta property="og:title" content="java学习(2)">
+<meta property="og:url" content="https://feiniua.github.io/2019/09/17/19917/index.html">
 <meta property="og:site_name" content="小老虎窝">
-<meta property="og:description" content="变量Java变量分为两种：成员变量和局部变量。    成员变量分为：实例变量和类变量，有初始值，类变量相当于c++的静态成员。 数组创建数组创建的两种方式：    123int[] a = new int[3];//动态声明Person[] per = new Person[5];//动态声明String[] str = new [3]&amp;#123;&quot;Hello&quot;,&quot;World&quot;,&quot;!&quot;&amp;#125;">
+<meta property="og:description" content="mian方法的语法public，jvm需要调用类的main()方法 static，jvm执行main()方法时不必创建对象 String，mian方法接受一个String类型的数组参数，该数组中保存执行java命令时传递给所运行的类的参数一个Java文件中只能有一个public类   1.可以有多个类但只能有一个public类，这表示，每个编译单元都有单一的公共接口，用public类来表现。该接口">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-16T15:49:08.690Z">
+<meta property="og:updated_time" content="2019-09-17T14:09:50.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java学习(1)">
-<meta name="twitter:description" content="变量Java变量分为两种：成员变量和局部变量。    成员变量分为：实例变量和类变量，有初始值，类变量相当于c++的静态成员。 数组创建数组创建的两种方式：    123int[] a = new int[3];//动态声明Person[] per = new Person[5];//动态声明String[] str = new [3]&amp;#123;&quot;Hello&quot;,&quot;World&quot;,&quot;!&quot;&amp;#125;">
+<meta name="twitter:title" content="java学习(2)">
+<meta name="twitter:description" content="mian方法的语法public，jvm需要调用类的main()方法 static，jvm执行main()方法时不必创建对象 String，mian方法接受一个String类型的数组参数，该数组中保存执行java命令时传递给所运行的类的参数一个Java文件中只能有一个public类   1.可以有多个类但只能有一个public类，这表示，每个编译单元都有单一的公共接口，用public类来表现。该接口">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://feiniua.github.io/2019/09/16/19916/">
+  <link rel="canonical" href="https://feiniua.github.io/2019/09/17/19917/">
 
 
 
 
 
-  <title>java学习(1) | 小老虎窝</title>
+  <title>java学习(2) | 小老虎窝</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://feiniua.github.io/2019/09/16/19916/">
+    <link itemprop="mainEntityOfPage" href="https://feiniua.github.io/2019/09/17/19917/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huu">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java学习(1)</h1>
+          <h1 class="post-title" itemprop="name headline">java学习(2)</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-16T22:13:52+08:00">
-                2019-09-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-17T20:36:52+08:00">
+                2019-09-17
               </time>
             
 
@@ -335,8 +335,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/09/16/19916/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/16/19916/" itemprop="commentCount"></span>
+                <a href="/2019/09/17/19917/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/17/19917/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -364,51 +364,44 @@
       
 
       
-        <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>Java变量分为两种：成员变量和局部变量。<br>    成员变量分为：实例变量和类变量，有初始值，类变量相当于c++的静态成员。</p>
-<h2 id="数组创建"><a href="#数组创建" class="headerlink" title="数组创建"></a>数组创建</h2><p>数组创建的两种方式：<br>    <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];<span class="comment">//动态声明</span></span><br><span class="line">Person[] per = <span class="keyword">new</span> Person[<span class="number">5</span>];<span class="comment">//动态声明</span></span><br><span class="line">String[] str = <span class="keyword">new</span> [<span class="number">3</span>]&#123;<span class="string">"Hello"</span>,<span class="string">"World"</span>,<span class="string">"!"</span>&#125;;<span class="comment">//静态声明</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="String"><a href="#String" class="headerlink" title="String +"></a>String +</h2><p>当把任何基本类型的值和字符串进行连接运算时(+)，基本类型的值将自动转化成字符串类型。<br>    <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"abc"</span> + <span class="number">1</span>);<span class="comment">//abc1</span></span><br><span class="line">		System.out.println(<span class="number">1</span> + <span class="number">3</span> + <span class="string">"abc"</span> + <span class="number">4</span> + <span class="number">5</span>);<span class="comment">//4abc45</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">new</span> Person().print();<span class="comment">//匿名对象</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="mian方法的语法"><a href="#mian方法的语法" class="headerlink" title="mian方法的语法"></a>mian方法的语法</h2><pre><code>public，jvm需要调用类的main()方法
+static，jvm执行main()方法时不必创建对象
+String，mian方法接受一个String类型的数组参数，该数组中保存执行java命令时传递给所运行的类的参数</code></pre><h2 id="一个Java文件中只能有一个public类"><a href="#一个Java文件中只能有一个public类" class="headerlink" title="一个Java文件中只能有一个public类"></a>一个Java文件中只能有一个public类</h2><p>   1.可以有多个类但只能有一个public类，这表示，每个编译单元都有单一的公共接口，用public类来表现。该接口可以按要求包含众多的支持包访问权限的类<br>   2.当Java源文件中有多个非public类时，运行时需要对数据来源进行选择<br>   3.编译器在编译时，针对一个java源代码文件（也称为“编译单元”）只会接受一个public类。负责报错<br>   4.public类不是必须的，Java文件中可以没有public类<br>   5.public类名跟文件名相同是为了方便虚拟机在相应的路径中找到相应的类所对应的字节码文件</p>
+<h2 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h2><pre><code>又叫覆盖 @Override</code></pre><h2 id="JavaBean"><a href="#JavaBean" class="headerlink" title="JavaBean"></a>JavaBean</h2><pre><code>属性私有 包含： Setter Getter</code></pre><h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><pre><code>不是c++的指针类型，使用&quot;.&quot;</code></pre><h2 id="super"><a href="#super" class="headerlink" title="super"></a>super</h2><pre><code>可以调用子类之上的所有父类层级，使用&quot;.&quot;
+子类调用父类构造函数时&quot;super();&quot;</code></pre><h2 id="简单类对象的实例化过程"><a href="#简单类对象的实例化过程" class="headerlink" title="简单类对象的实例化过程"></a>简单类对象的实例化过程</h2><pre><code>1.方法区 加载Person.class
+2.栈内存 在栈中申请空间，声明变量p
+3.堆内存 在堆内存中开辟空间，分配地址。
+4.堆内存 并在对象空间中，对对象中的属性进行默认初始化。
+5.栈内存 构造函数方法进栈，进行初始化
+6.初始化完毕后，将堆内存的地址赋给引用变量。构造方法出栈</code></pre><h2 id="子类对象的实例化过程"><a href="#子类对象的实例化过程" class="headerlink" title="子类对象的实例化过程"></a>子类对象的实例化过程</h2><pre><code>1.方法区 先加载Person.class,再加载Student.class
+2.栈内存 在栈中申请空间，声明变量stu
+3.堆内存 在堆内存中开辟空间，分配地址。
+4.堆内存 并在对象空间中，对对象的属性进行默认初始化
+5.栈内存 子类构造方法进栈
+6.堆内存 显示初始化父类的属性
+7.栈内存 父类构造方法进栈，执行完毕出栈
+8.堆内存 显示初始化子类的属性
+9.栈内存 初始化完毕后，将堆内存中的地址值赋给引用变量。子类构造函数出栈。</code></pre><h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><pre><code>Java引用变量有两个类型：编译时类型和运行时类型。编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给给变量的对象决定。
+  若编译时类型和运行时类型不一致，就出现多态。
+  子类可看成特殊的父类，所有父类类型的引用可以指向子类的对象：向上转型（upcasting）
+      向上转型时：（相当于c++动态联编）
+          成员方法：
+              编译时：要查看引用变量所属的类中是否有所调用的方法（父类的方法）
+              运行时：调用实际对象所属的类中的重写方法（子类中重写或继承的方法）
+              （不能调用子类中特有的方法）
+          成员变量：
+              不具备多态性，只看引用变量所属的类    </code></pre><h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><pre><code>检验某个对象是不是类A的对象  &quot;a instanceof A&quot;</code></pre><h2 id="Object的函数"><a href="#Object的函数" class="headerlink" title="Object的函数"></a>Object的函数</h2><pre><code>equals(Object)//对象比较
+hashCode()//取得Hash码
+toString()//对象打印时调用 获取地址</code></pre><h2 id="与-equals"><a href="#与-equals" class="headerlink" title="== 与 equals"></a>== 与 equals</h2><pre><code>1.== 比较对象时 只有指向同一对象地址时才返回true
+2.使用 == 时，符号两边的数据类型必须兼容
+3.equals只比较引用时作用与 == 相同
+4.于某些特殊的类，如String，File，Date，使用 == 比较的是对象的地址，equals比较的是内容
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br><span class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br><span class="line">System.out.println(s1 == s2);<span class="comment">//false</span></span><br><span class="line">System.out.println(s1.equals(x2));<span class="comment">//true</span></span><br></pre></td></tr></table></figure></code></pre><h2 id="基本数据类型的包装类"><a href="#基本数据类型的包装类" class="headerlink" title="基本数据类型的包装类"></a>基本数据类型的包装类</h2><pre><code>主要用于基本数据类型与字符串的转换
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = Integer.parseInt(<span class="string">"123"</span>);</span><br><span class="line"><span class="keyword">float</span> f = Float.parseFloat(<span class="string">"1.25"</span>);</span><br><span class="line"><span class="keyword">boolean</span> b = Boolean.parseBoolean(<span class="string">"true"</span>);</span><br><span class="line">String istr = String.valueOf(i);</span><br></pre></td></tr></table></figure></code></pre><h2 id="单例-Singleton）设计模式"><a href="#单例-Singleton）设计模式" class="headerlink" title="单例(Singleton）设计模式"></a>单例(Singleton）设计模式</h2><pre><code> 饿汉式的单例模式
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">   <span class="comment">//私有的构造，构造方法私有化</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//私有的Single类型的类变量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Single single = <span class="keyword">new</span> Single();</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> single;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><pre><code>函数重载跟c++一样，只与参数的个数和数据类型有关。</code></pre><h2 id="传递可变参数"><a href="#传递可变参数" class="headerlink" title="传递可变参数"></a>传递可变参数</h2><pre><code>传递可变参数时一般用数组，但Java提供了&quot;...&quot;用法。
-使用该种方法时...只能用在最后面</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="keyword">int</span> i, <span class="keyword">int</span>... a);<span class="comment">//正确</span></span><br><span class="line">print(<span class="keyword">int</span>... a, <span class="keyword">int</span> i);<span class="comment">//错误</span></span><br><span class="line">print(<span class="keyword">int</span>... a, <span class="keyword">int</span>... b);<span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
-
-
-<p>例如</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">new</span> Person().print(<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>... a)</span></span>&#123; <span class="comment">//...方式传参</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++)&#123;</span><br><span class="line">			System.out.println(a[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="基本数据类型与引用数据类型"><a href="#基本数据类型与引用数据类型" class="headerlink" title="基本数据类型与引用数据类型"></a>基本数据类型与引用数据类型</h2><pre><code>8中基本数据类型：
-        boolean,type,char,short,int,long,float,double
-type,short,char这三者计算时先转换成int类型计算
-其余的都是引用数据类型，比如String。
-基本数据类型跟引用数据的值存放在栈区。
-引用数据的值所指的值在堆区。
-
-所以用函数交换基本数据类型的值改变不了值。</code></pre><div id="flowchart-0" class="flow-chart"></div>
-
-<div id="flowchart-1" class="flow-chart"></div>
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">#由于渲染问题，请自行将 · 替换为 `
-st=>start: 开始
-e=>end: 结束
-op=>operation: 我的操作
-cond=>condition: 确认？
-
-st->op->cond
-cond(yes)->e
-cond(no)->op</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><textarea id="flowchart-1-code" style="display: none">#由于渲染问题，请自行将 · 替换为 `
-st=>start: Start:>http://www.google.com[blank]
-e=>end:>http://www.google.com
-op1=>operation: My Operation
-sub1=>subroutine: My Subroutine
-cond=>condition: Yes
-or No?:>http://www.google.com
-io=>inputoutput: catch something...
-
-st->op1->cond
-cond(yes)->io->e
-cond(no)->sub1(right)->op1</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script>
+懒汉式相似：&quot;single;&quot;没有初始化空间；getInstance修改第一次运行时new</code></pre><h2 id="代码块-构造代码块-静态代码块"><a href="#代码块-构造代码块-静态代码块" class="headerlink" title="代码块 (构造代码块 静态代码块)"></a>代码块 (构造代码块 静态代码块)</h2><pre><code>在new Person()时，先执行类的属性的默认初始化和显示初始化，在执行代码块，最后执行构造函数
+静态代码块只能使用静态修饰的属性和方法，只被执行一次，静态代码块执行先于代码块    </code></pre>
       
     </div>
     
@@ -440,8 +433,8 @@ cond(no)->sub1(right)->op1</textarea><textarea id="flowchart-1-options" style="d
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/15/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/09/16/19916/" rel="next" title="java学习(1)">
+                <i class="fa fa-chevron-left"></i> java学习(1)
               </a>
             
           </div>
@@ -449,10 +442,6 @@ cond(no)->sub1(right)->op1</textarea><textarea id="flowchart-1-options" style="d
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/17/19917/" rel="prev" title="java学习(2)">
-                java学习(2) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,7 +578,7 @@ cond(no)->sub1(right)->op1</textarea><textarea id="flowchart-1-options" style="d
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组创建"><span class="nav-number">2.</span> <span class="nav-text">数组创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">3.</span> <span class="nav-text">String +</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匿名对象"><span class="nav-number">4.</span> <span class="nav-text">匿名对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数重载"><span class="nav-number">5.</span> <span class="nav-text">函数重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传递可变参数"><span class="nav-number">6.</span> <span class="nav-text">传递可变参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型与引用数据类型"><span class="nav-number">7.</span> <span class="nav-text">基本数据类型与引用数据类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mian方法的语法"><span class="nav-number">1.</span> <span class="nav-text">mian方法的语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个Java文件中只能有一个public类"><span class="nav-number">2.</span> <span class="nav-text">一个Java文件中只能有一个public类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写"><span class="nav-number">3.</span> <span class="nav-text">重写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaBean"><span class="nav-number">4.</span> <span class="nav-text">JavaBean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">5.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#super"><span class="nav-number">6.</span> <span class="nav-text">super</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单类对象的实例化过程"><span class="nav-number">7.</span> <span class="nav-text">简单类对象的实例化过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子类对象的实例化过程"><span class="nav-number">8.</span> <span class="nav-text">子类对象的实例化过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">9.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instanceof"><span class="nav-number">10.</span> <span class="nav-text">instanceof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object的函数"><span class="nav-number">11.</span> <span class="nav-text">Object的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与-equals"><span class="nav-number">12.</span> <span class="nav-text">== 与 equals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型的包装类"><span class="nav-number">13.</span> <span class="nav-text">基本数据类型的包装类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例-Singleton）设计模式"><span class="nav-number">14.</span> <span class="nav-text">单例(Singleton）设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码块-构造代码块-静态代码块"><span class="nav-number">15.</span> <span class="nav-text">代码块 (构造代码块 静态代码块)</span></a></li></ol></div>
             
 
           </div>
