@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="小老虎窝">
 <meta property="og:description" content="mian方法的语法public，jvm需要调用类的main()方法 static，jvm执行main()方法时不必创建对象 String，mian方法接受一个String类型的数组参数，该数组中保存执行java命令时传递给所运行的类的参数一个Java文件中只能有一个public类   1.可以有多个类但只能有一个public类，这表示，每个编译单元都有单一的公共接口，用public类来表现。该接口">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-17T14:09:50.851Z">
+<meta property="og:updated_time" content="2019-09-18T10:41:39.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java学习(2)">
 <meta name="twitter:description" content="mian方法的语法public，jvm需要调用类的main()方法 static，jvm执行main()方法时不必创建对象 String，mian方法接受一个String类型的数组参数，该数组中保存执行java命令时传递给所运行的类的参数一个Java文件中只能有一个public类   1.可以有多个类但只能有一个public类，这表示，每个编译单元都有单一的公共接口，用public类来表现。该接口">
@@ -401,7 +401,11 @@ toString()//对象打印时调用 获取地址</code></pre><h2 id="与-equals"><
  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">   <span class="comment">//私有的构造，构造方法私有化</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//私有的Single类型的类变量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Single single = <span class="keyword">new</span> Single();</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> single;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 懒汉式相似：&quot;single;&quot;没有初始化空间；getInstance修改第一次运行时new</code></pre><h2 id="代码块-构造代码块-静态代码块"><a href="#代码块-构造代码块-静态代码块" class="headerlink" title="代码块 (构造代码块 静态代码块)"></a>代码块 (构造代码块 静态代码块)</h2><pre><code>在new Person()时，先执行类的属性的默认初始化和显示初始化，在执行代码块，最后执行构造函数
-静态代码块只能使用静态修饰的属性和方法，只被执行一次，静态代码块执行先于代码块    </code></pre>
+静态代码块只能使用静态修饰的属性和方法，只被执行一次，静态代码块执行先于代码块    
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line">		a = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	&#123;</span><br><span class="line">		a = <span class="number">5</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Person s = <span class="keyword">new</span> Person()&#123;</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">super</span>.a = <span class="number">3</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		System.out.println(s.a);<span class="comment">// a=3;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
       
     </div>
     
@@ -442,6 +446,10 @@ toString()//对象打印时调用 获取地址</code></pre><h2 id="与-equals"><
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/19/19919/" rel="prev" title="java学习(3)">
+                java学习(3) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -523,7 +531,7 @@ toString()//对象打印时调用 获取地址</code></pre><h2 id="与-equals"><
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
