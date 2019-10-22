@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="2019,MySQL,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="执行流程https://www.cnblogs.com/yyjie/p/7788428.html select 考生姓名, max(总成绩) as max总成绩     from tb_Grade     where 考生姓名 is not null     group by 考生姓名     having max(总成绩) &amp;gt; 600     order by max总成绩      在上">
+<meta name="keywords" content="2019,MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL部分函数">
+<meta property="og:url" content="https://feiniua.github.io/2019/10/22/191022/index.html">
+<meta property="og:site_name" content="HUU">
+<meta property="og:description" content="执行流程https://www.cnblogs.com/yyjie/p/7788428.html select 考生姓名, max(总成绩) as max总成绩     from tb_Grade     where 考生姓名 is not null     group by 考生姓名     having max(总成绩) &amp;gt; 600     order by max总成绩      在上">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-22T05:20:16.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL部分函数">
+<meta name="twitter:description" content="执行流程https://www.cnblogs.com/yyjie/p/7788428.html select 考生姓名, max(总成绩) as max总成绩     from tb_Grade     where 考生姓名 is not null     group by 考生姓名     having max(总成绩) &amp;gt; 600     order by max总成绩      在上">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://feiniua.github.io/2019/10/22/191022/">
+
+
+
+
+
+  <title>MySQL部分函数 | HUU</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HUU</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://feiniua.github.io/2019/10/22/191022/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/xqd1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HUU">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL部分函数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-22T13:10:57+08:00">
+                2019-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/22/191022/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/22/191022/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p><a href="https://www.cnblogs.com/yyjie/p/7788428.html" target="_blank" rel="noopener">https://www.cnblogs.com/yyjie/p/7788428.html</a></p>
+<pre><code>select 考生姓名, max(总成绩) as max总成绩   
+
+from tb_Grade   
+
+where 考生姓名 is not null   
+
+group by 考生姓名   
+
+having max(总成绩) &gt; 600   
+
+order by max总成绩   
+
+ 在上面的示例中 SQL 语句的执行顺序如下: 
+
+(1). 首先执行 FROM 子句, 从 tb_Grade 表组装数据源的数据 
+
+(2). 执行 WHERE 子句, 筛选 tb_Grade 表中所有数据不为 NULL 的数据 
+
+(3). 执行 GROUP BY 子句, 把 tb_Grade 表按 &quot;学生姓名&quot; 列进行分组
+    (注：这一步开始才可以使用select中的别名，他返回的是一个游标，而不是一个表，
+    所以在where中不可以使用select中的别名，而having却可以使用)
+
+(4). 计算 max() 聚集函数, 按 &quot;总成绩&quot; 求出总成绩中最大的一些数值 
+
+(5). 执行 HAVING 子句, 筛选课程的总成绩大于 600 分的. 
+
+(7). 执行 ORDER BY 子句, 把最后的结果按 &quot;Max 成绩&quot; 进行排序. </code></pre><hr>
+<h2 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h2><pre><code><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	函数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字符函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.LENGTH 用于获取参数值的字节个数</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LENGTH</span>(<span class="string">'JOHN'</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LENGTH</span>(<span class="string">'张三丰'</span>);</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'%char%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.CONCAT 拼接字符串,字段</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CONCAT</span>(last_name,<span class="string">'_'</span>,first_name) <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.UPPER 字符串变大写</span></span><br><span class="line"><span class="comment"># LOWER 字符串变小写</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">UPPER</span>(<span class="string">'john'</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LOWER</span>(<span class="string">'joHn'</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CONCAT</span>(<span class="keyword">UPPER</span>(last_name),<span class="string">'_'</span>,<span class="keyword">LOWER</span>(first_name)) <span class="keyword">AS</span> 姓名 <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.SUBSTR = SUBSTRING</span></span><br><span class="line"><span class="comment"># 索引从1开始</span></span><br><span class="line"><span class="comment"># 截取指定索引后面的所有字符</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SUBSTR</span>(<span class="string">'xiaoming'</span>,<span class="number">5</span>) <span class="keyword">output</span>;</span><br><span class="line"><span class="comment"># 截取指定索引后的指定长度字符</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SUBSTR</span>(<span class="string">'xiaoming'</span>,<span class="number">1</span>,<span class="number">4</span>) <span class="keyword">output</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CONCAT</span>(<span class="keyword">UPPER</span>(<span class="keyword">SUBSTR</span>(last_name,<span class="number">1</span>,<span class="number">1</span>)),<span class="string">'_'</span>,<span class="keyword">LOWER</span>(<span class="keyword">SUBSTR</span>(last_name,<span class="number">2</span>))) <span class="keyword">AS</span> 姓 <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.INSTR</span></span><br><span class="line"><span class="comment"># 返回子串在母串第一次出现的索引</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">INSTR</span>(<span class="string">'xiaoming'</span>,<span class="string">'ming'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.TRIM</span></span><br><span class="line"><span class="comment"># 默认去掉前后的空格</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LENGTH</span>(<span class="keyword">TRIM</span>(<span class="string">'    ming   '</span>));</span><br><span class="line"><span class="comment"># 去掉前后的a不去掉空格</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">length</span>(<span class="keyword">TRIM</span>(<span class="string">'a'</span> <span class="keyword">FROM</span> <span class="string">'aaaa xiaoming aaaa'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7.LPAD RPAD</span></span><br><span class="line"><span class="comment"># 用指定的字符实现左(右)填充到指定长度 </span></span><br><span class="line"><span class="comment"># 超过了会截断</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LPAD</span>(<span class="string">'张三'</span>,<span class="number">10</span>,<span class="string">'#'</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LPAD</span>(<span class="string">'张三'</span>,<span class="number">1</span>,<span class="string">'#'</span>);</span><br><span class="line"><span class="keyword">SELECT</span> RPAD(<span class="string">'张三'</span>,<span class="number">10</span>,<span class="string">'#'</span>);</span><br><span class="line"><span class="keyword">SELECT</span> RPAD(<span class="string">'张三'</span>,<span class="number">1</span>,<span class="string">'#'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 8.REPLACE</span></span><br><span class="line"><span class="comment"># 替换母串中所有出现的ming换成hong</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">REPLACE</span>(<span class="string">'xiaoming'</span>,<span class="string">'ming'</span>,<span class="string">'hong'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数学函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.ROUND 四舍五入</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="number">4.5</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.CEIL 向上取整 </span></span><br><span class="line"><span class="comment"># 大于等于该参数的最小整数</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CEIL</span>(<span class="number">1.3</span>);   <span class="comment"># 2</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CEIL</span>(<span class="number">-1.3</span>);  <span class="comment"># -1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.FLOOR 向下取整</span></span><br><span class="line"><span class="comment"># 小于等于该参数的最大整数</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">FLOOR</span>(<span class="number">1.4</span>);  <span class="comment"># 1</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">FLOOR</span>(<span class="number">-1.4</span>); <span class="comment"># -2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.TRUNCATE 截断</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">TRUNCATE</span>(<span class="number">1.998411</span>,<span class="number">1</span>); <span class="comment"># 1.9</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.MOD 取余</span></span><br><span class="line"><span class="comment"># MOD(a,b) = a-a/b*b</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MOD</span>(<span class="number">10</span>,<span class="number">3</span>);  <span class="comment"># 1</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MOD</span>(<span class="number">-10</span>,<span class="number">3</span>); <span class="comment"># -1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日期函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.NOW 返回当前时间</span></span><br><span class="line"><span class="comment">#	CURDATE 返回当前日期</span></span><br><span class="line"><span class="comment">#   CURTIME 返回当前时间</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">NOW</span>(); <span class="comment"># 2019-10-20 11:15:34</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CURDATE</span>(); <span class="comment"># 2019-10-20</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CURTIME</span>();   <span class="comment"># 11:16:41</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.可以获取指定的部分，年月日分秒等</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">YEAR</span>(<span class="keyword">NOW</span>()); <span class="comment"># 2019</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MONTH</span>(<span class="keyword">NOW</span>());</span><br><span class="line"><span class="keyword">SELECT</span> MONTHNAME(<span class="keyword">NOW</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.STR_TO_DATE </span></span><br><span class="line"><span class="comment"># 将字符通过指定的格式转化为日期</span></span><br><span class="line"><span class="comment"># 第二个参数是解析模式</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">STR_TO_DATE</span>(<span class="string">'3 15-2014'</span>,<span class="string">'%m %d-%y'</span>) <span class="keyword">AS</span> out_put;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> hiredate=<span class="keyword">STR_TO_DATE</span>(<span class="string">'1-9-2014'</span>,<span class="string">'%m-%d-%y'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.DATE_FORMAT</span></span><br><span class="line"><span class="comment"># 将日期转化为字符</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATE_FORMAT</span>(<span class="keyword">NOW</span>(),<span class="string">'%Y年%m月%d日'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 其它函数</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">VERSION</span>();</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATABASE</span>();</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">USER</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 流程控制函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># IF 相当于三元运算符</span></span><br><span class="line"> <span class="keyword">SELECT</span> <span class="keyword">IF</span>(<span class="number">10</span>&gt;<span class="number">5</span>,<span class="string">'大'</span>,<span class="string">'小'</span>);</span><br><span class="line"> <span class="keyword">SELECT</span> <span class="keyword">id</span>,<span class="keyword">IF</span>(<span class="keyword">id</span>&gt;<span class="number">5</span>,<span class="string">'大于5'</span>,<span class="string">'小于5'</span>) <span class="keyword">AS</span> 备注 <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"> </span><br><span class="line"> <span class="comment"># CASE 多支选择</span></span><br><span class="line"> <span class="comment">/*</span></span><br><span class="line"><span class="comment">	CASE  判断的字段</span></span><br><span class="line"><span class="comment">	WHEN  判断的条件 THEN 执行的操作</span></span><br><span class="line"><span class="comment">	WHEN   			 THEN</span></span><br><span class="line"><span class="comment">	...</span></span><br><span class="line"><span class="comment">	ELSE  都不满足后执行的操作</span></span><br><span class="line"><span class="comment">	END</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment"># SWITCH</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">AS</span> 原<span class="keyword">id</span>,</span><br><span class="line"><span class="keyword">CASE</span> <span class="keyword">id</span></span><br><span class="line"><span class="keyword">WHEN</span> <span class="number">5</span> <span class="keyword">THEN</span> <span class="keyword">id</span>+<span class="number">100</span></span><br><span class="line"><span class="keyword">WHEN</span> <span class="number">10</span> <span class="keyword">THEN</span> <span class="keyword">id</span>+<span class="number">1000</span></span><br><span class="line"><span class="keyword">ELSE</span> <span class="keyword">id</span><span class="number">-10</span></span><br><span class="line"><span class="keyword">END</span> <span class="keyword">AS</span> 新<span class="keyword">id</span></span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 多重IF</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">AS</span> 原<span class="keyword">id</span>,</span><br><span class="line"><span class="keyword">CASE</span> </span><br><span class="line"><span class="keyword">WHEN</span> <span class="keyword">id</span>&lt;=<span class="number">5</span> <span class="keyword">THEN</span> <span class="keyword">id</span>+<span class="number">100</span></span><br><span class="line"><span class="keyword">WHEN</span> <span class="keyword">id</span>&lt;=<span class="number">10</span> <span class="keyword">THEN</span> <span class="keyword">id</span>+<span class="number">1000</span></span><br><span class="line"><span class="keyword">ELSE</span> <span class="keyword">id</span><span class="number">-10</span></span><br><span class="line"><span class="keyword">END</span> <span class="keyword">AS</span> 新<span class="keyword">id</span></span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure></code></pre><hr>
+<h2 id="分组函数"><a href="#分组函数" class="headerlink" title="分组函数"></a>分组函数</h2><pre><code><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分组函数 又称统计函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  字符型跟日期型可以排序</span></span><br><span class="line"><span class="comment">  故可以找最大值最小值</span></span><br><span class="line"><span class="comment">  但求和求平均值没有意义</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  COUNT计算非空字段的个数</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  以上分组函数忽略null</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  可以跟DISTINCT搭配使用</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  和分组函数一同查询的字段要求group by后的字段</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment"># 把user表中id求一个总和</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SUM</span>(<span class="keyword">id</span>) <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">AVG</span>(<span class="keyword">id</span>) <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MAX</span>(<span class="keyword">id</span>) <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MIN</span>(<span class="keyword">id</span>) <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(<span class="keyword">id</span>) <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SUM</span>(<span class="keyword">id</span>) 总和,<span class="keyword">AVG</span>(<span class="keyword">id</span>) 平均值,<span class="keyword">MAX</span>(<span class="keyword">id</span>) 最大值,<span class="keyword">MIN</span>(<span class="keyword">id</span>) 最小值,<span class="keyword">COUNT</span>(<span class="keyword">id</span>) 总数 <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搭配DINTINCT使用</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SUM</span>(<span class="keyword">DISTINCT</span> <span class="keyword">id</span>),<span class="keyword">SUM</span>(<span class="keyword">id</span>) <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># COUNT</span></span><br><span class="line"><span class="comment"># 统计行数</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">5</span>;</span><br><span class="line"><span class="comment"># 相当于在表中加了一列常量值统计</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(<span class="number">1</span>) <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日期相减的天数</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATEDIFF</span>(<span class="keyword">NOW</span>(),<span class="string">'2000-11-12'</span>);</span><br></pre></td></tr></table></figure></code></pre><hr>
+<h2 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h2><pre><code><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">分组查询</span></span><br><span class="line"><span class="comment">语法:</span></span><br><span class="line"><span class="comment">	SELECT 分组函数,列(要求出现在group by的后面)</span></span><br><span class="line"><span class="comment">	FROM 表</span></span><br><span class="line"><span class="comment">	【WHERE 筛选条件】</span></span><br><span class="line"><span class="comment">	GROUP BY 分组的列表</span></span><br><span class="line"><span class="comment">	【ORDER BY 子句】</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment"># 查询每个工种的最高工资</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MAX</span>(salary),job_id</span><br><span class="line"><span class="keyword">FROM</span> employee</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> job_id;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询每个位置上的部门个数</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*),location_id</span><br><span class="line"><span class="keyword">FROM</span> departments</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> location_id;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加 筛选条件</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">AVG</span>(salary),department_id</span><br><span class="line"><span class="keyword">FROM</span> departments</span><br><span class="line"><span class="keyword">WHERE</span> email <span class="keyword">LIKE</span> <span class="string">'%a%'</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> departments;</span><br><span class="line"></span><br><span class="line"><span class="comment"># HAVING</span></span><br><span class="line"><span class="comment"># 对筛选后的结果 再次筛选</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*),department_id</span><br><span class="line"><span class="keyword">FROM</span> departments</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> derpartment_id</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(*)&gt;<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询 每个工种 有奖金的员工的 最高工资&gt;12000的工种编号和最高工资</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MAX</span>(salary),job_id</span><br><span class="line"><span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">WHERE</span> commission_pct <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> job_id</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">MAX</span>(salary)&gt;<span class="number">12000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按表达式分组</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*),<span class="keyword">LENGTH</span>(last_name) len_name</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">user</span> </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">id</span>&gt;<span class="number">5</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">LENGTH</span>(last_name)</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(*)&gt;=<span class="number">6</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询 每个部门 每个工种 的平均工资 并降序排序</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">AVG</span>(salary),department_id,job_id</span><br><span class="line"><span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> department_id,job_id</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">AVG</span>(salary) <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure></code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/2019/" rel="tag"><i class="fa fa-tag"> 2019</i></a>
+          
+            <a href="/tags/MySQL/" rel="tag"><i class="fa fa-tag"> MySQL</i></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/19/191019/" rel="next" title="MySQL查询语句">
+                <i class="fa fa-chevron-left"></i> MySQL查询语句
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/xqd1.jpg" alt="huu">
+            
+              <p class="site-author-name" itemprop="name">huu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行流程"><span class="nav-number">1.</span> <span class="nav-text">执行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单行函数"><span class="nav-number">2.</span> <span class="nav-text">单行函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组函数"><span class="nav-number">3.</span> <span class="nav-text">分组函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组查询"><span class="nav-number">4.</span> <span class="nav-text">分组查询</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+<script>
+var mydate=new Date()
+var year=mydate.getYear()
+if (year < 1000)
+year+=1900
+var day=mydate.getDay()
+var month=mydate.getMonth()
+var daym=mydate.getDate()
+if (daym<10)
+daym="0"+daym
+var dayarray=new Array("星期天","星期一","星期二","星期三","星期四","星期五","星期六")
+var montharray=new Array("1","2","3","4","5","6","7","8","9","10","11","12")
+document.write("  |  "+year+"年"+montharray[month]+"月"+daym+"日"+" "+dayarray[day])
+</script>
+
+<span id="sitetime"></span>
+<script language="javascript">
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var t1 = Date.UTC(2019,09,16,12,30,00); //北京时间2018-2-13 00:00:00
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" | 已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分 "+diffSeconds+" 秒";
+	}/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+	siteTime();
+</script>
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'KSToo7OSoXEFpl78jKRs7h3P-gzGzoHsz',
+        appKey: 'kANry828U51WNMFq8MS9xtfR',
+        placeholder: 'You jump,I jump',
+        avatar:'monsterid',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
